@@ -1,0 +1,31 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block body %}
+    <section>
+        <article>
+            <div class="first">
+                <h2>Tous les tags</h2>
+                <a class="admin-btn" href="{{ path('add_tags') }}">Créer un nouveau tag</a>
+            </div>
+            <div>
+                <div style="overflow-x:auto;">
+                    <table class="admin-table">
+                        <tr>
+                            <th>Nom du tag</th>
+                            <th>Options</th>
+                       </tr>
+                       {% for tag in tags %}
+                       <tr>
+                            <td>{{ tag.name | slice(0, 100) }}</td>
+                            <td>
+                                <a href="{{ path('delete_tag', {id: tag.id}) }}" ><i class="fa-solid fa-trash red"></i></a>
+                                <a href="{{ path('edit_tags', {id: tag.id}) }}" ><i class="fa-solid fa-pen-to-square orange"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </article>
+    </section>
+{% endblock %}

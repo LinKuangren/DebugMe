@@ -1,0 +1,141 @@
+.body {
+  padding-inline: 20px;
+  padding-bottom: 60px;
+}
+
+.container {
+  max-width: 1440px;
+  margin: auto;
+
+  p {
+    margin: 0;
+  }
+}
+
+.tickets {
+  display: grid;
+  gap: 1rem;
+
+  .ticket {
+    all: unset;
+    background-color: var(--bg);
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+
+    &__title {
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    &__tags {
+      padding-block: .5rem;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: .5rem;
+
+      p {
+        background-color: var(--green);
+        padding: .5rem;
+        border-radius: 1rem;
+
+        color: var(--light);
+      }
+
+      p, span {
+        font-size: 1rem;
+      }
+
+      span {
+        font-weight: 500;
+      }
+    }
+
+    &__content {
+      font-size: 1rem;
+    }
+
+    &__comments {
+      text-align: right;
+    }
+  }
+}
+
+.search-form {
+  form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  input {
+    all: unset;
+    border: solid 1px var(--orange);
+    border-radius: 3px;
+    padding-inline: 1rem;
+    padding-block: 4px;
+  }
+
+  &__cta {
+    all: unset;
+    background-color: var(--orange);
+    padding: .3rem 1rem;
+    border-radius: 3px;
+    color: var(--light);
+    font-weight: 500;
+    cursor: pointer;
+    opacity: .8;
+
+    transition: .2s ease-in-out;
+  }
+
+  &__cta:hover {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .tickets.row {
+    grid-template-columns: repeat(3, 1fr);
+
+    .ticket {
+      position: relative;
+      padding-bottom: 3.5rem;
+
+      &__title {
+        font-size: 1.5rem;
+      }
+
+      &__tags {
+        p, span {
+          font-size: 1.125rem;
+        }
+      }
+
+      &__content {
+        font-size: 1.125rem;
+      }
+
+      &__comments {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+      }
+    }
+  }
+
+  .search-form {
+    form {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    input {
+      width: 70%;
+      max-width: 600px;
+    }
+  }
+}

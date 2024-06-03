@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un ticket{% endblock %}
+{% block meta_description %}Modification d'un ticket sur le site.{% endblock %}
+
+{% block body %}
+        <h1> Modifier un ticket</h1>
+        <div class="form-title">
+            {{ form_start(form) }}
+                <div class="form">
+                    {{ form_label(form.title, "Titre") }}
+                    {{ form_widget(form.title, { 'attr': {'class': ' form-all title-block'} }) }}
+                </div>
+                <div class="form">
+                    {{ form_label(form.content, "Contenu") }}
+                    {{ form_widget(form.content, { 'attr': {'class': ' form-all title-block'} }) }}
+                </div>
+                <div class="form">
+                    {{ form_label(form.tags, "Tags") }}
+                    {{ form_widget(form.tags, { 'attr': {'class': ' form-all title-block'} }) }}
+                </div>
+                <div class="form flex-start">
+                    {{ form_label(form.done, "Statut") }}
+                    {{ form_widget(form.done, { 'attr': {'class': ' form-all title-block'} }) }}
+                </div>
+                <div class="valider">
+                    {{ form_label(form.Valider) }}
+                    {{ form_widget(form.Valider, { 'attr': {'class': 'button-valider'} }) }}
+                </div>
+            {{ form_end(form) }}
+        </div>
+{% endblock %}

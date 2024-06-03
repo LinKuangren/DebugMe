@@ -1,0 +1,20 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Nouveau tag{% endblock %}
+{% block meta_description %}Ajout de tag sur le site{% endblock %}
+
+{% block body %}
+        <h1>Nouveau tag</h1>
+        <section>
+            {{ form_start(form) }}
+                <div class="form">
+                    {{ form_label(form.name, "Titre") }}
+                    {{ form_widget(form.name, { 'attr': {'class': ' form-all title-block'} }) }}
+                </div>
+                <div class="valider">
+                    {{ form_label(form.Valider) }}
+                    {{ form_widget(form.Valider, { 'attr': {'class': 'button-valider'} }) }}
+                </div>
+            {{ form_end(form) }}
+        </section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Modification du commentaire{% endblock %}
+{% block meta_description %}Modifie un commentaire sur le site{% endblock %}
+
+{% block body %}
+        <h1>Modification du commentaire</h1>
+        <section>
+            {{ form_start(form) }}
+                <div class="form">
+                    {{ form_label(form.content, "Commentaire") }}
+                    {{ form_widget(form.content, { 'attr': {'class': ' form-all title-block'} }) }}
+                </div>
+                <div class="valider">
+                    {{ form_label(form.Publier) }}
+                    {{ form_widget(form.Publier, { 'attr': {'class': 'button-valider'} }) }}
+                </div>
+            {{ form_end(form) }}
+        </section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TagsController!{% endblock %}
+
+{% block body %}
+    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="probleme">
+        <a href="{{ path('add_tags') }}">Ajouter un ticket</a>
+    </div>
+    <div>
+        {{ knp_pagination_render(tags) }}
+         <div>
+            {% for tag in tags %}
+                <div class="all">
+                    <p>{{tag.name}}</p>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div>
+                            <a href="{{ path('delete_tag', {id: tag.id}) }}">Supprimer</a>
+                            <a href="{{ path('edit_tags', {id: tag.id}) }}">Modifier</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        {{ knp_pagination_render(tags) }}
+    </div>
+{% endblock %}

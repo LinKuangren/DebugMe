@@ -1,0 +1,31 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block body %}
+    <section>
+        <article>
+            <h2>Tous les commentaires</h2>
+            <div>
+                <div style="overflow-x:auto;">
+                    <table class="admin-table">
+                        <tr>
+                            <th>Titre du ticket</th>
+                            <th>Auteur</th>
+                            <th>Options</th>
+                       </tr>
+                       {% for comment in comments %}
+                       <tr>
+                            <td>{{ comment.content | slice(0, 100) }}</td>
+                            <td>{{ comment.author.pseudo }}</td>
+                            <td>
+                                <a href="{{ path('app_admin_comment_delete', {id: comment.id}) }}" ><i class="fa-solid fa-trash red"></i></a>
+                                <a href="{{ path('edit_comment', {id: comment.id}) }}" ><i class="fa-solid fa-pen-to-square red"></i></a>
+                                <a href="{{ path('show_tickets', {id: comment.ticket.id}) }}"><i class="fa-brands fa-readme green"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </article>
+    </section>
+{% endblock %}

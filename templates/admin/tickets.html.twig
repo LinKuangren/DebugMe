@@ -1,0 +1,33 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block body %}
+    <section>
+        <article>
+            <h2>Tous les tickets</h2>
+            <div>
+                <div style="overflow-x:auto;">
+                    <table class="admin-table">
+                        <tr>
+                            <th>Titre du ticket</th>
+                            <th>Auteur</th>
+                            <th>Status</th>
+                            <th>Options</th>
+                       </tr>
+                       {% for ticket in tickets %}
+                       <tr>
+                            <td>{{ ticket.title | slice(0, 100) }}</td>
+                            <td>{{ ticket.author.pseudo }}</td>
+                            <td>{{ ticket.done }}</td>
+                            <td>
+                                <a href="{{ path('app_admin_tickets_delete', {id: ticket.id}) }}" ><i class="fa-solid fa-trash red"></i></a>
+                                <a href="{{ path('app_admin_tickets_edit', {id: ticket.id}) }}" ><i class="fa-solid fa-pen-to-square red"></i></a>
+                                <a href="{{ path('show_tickets', {id: ticket.id}) }}"><i class="fa-brands fa-readme green"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </article>
+    </section>
+{% endblock %}

@@ -1,0 +1,131 @@
+#admin-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: 1 / 1 / 6 / 2;
+}
+
+header#admin-header {
+    background-color: var(--dark);
+    padding: 1rem;
+    place-content: center;
+}
+
+.admin-navigation {
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 10px;
+}
+
+.admin-navigation nav {
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 10px;
+}
+
+.admin-navigation nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 40px;
+}
+
+.admin-navigation nav ul li {
+    display: inline-block;
+    margin-right: 15px; /* Ajoutez de l'espace entre les éléments du menu si nécessaire */
+}
+
+.admin-navigation nav ul li a {
+    text-decoration: none;
+    color: #333; /* Couleur du texte du menu, ajustez selon votre design */
+    font-weight: bold;
+    font-size: 16px; /* Taille de la police du menu, ajustez selon votre design */
+}
+
+/* Style pour les liens au survol */
+.admin-navigation nav ul li a:hover {
+    color: #ff6600; /* Couleur au survol, ajustez selon votre design */
+}
+
+#admin-body {
+    display: grid;
+    grid-template-columns: 20%;
+    grid-template-rows: 80%;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    div.admin-body {
+        grid-area: 1 / 2 / 6 / 6;
+    }
+}
+
+/** ADMIN : Index */
+section.tables-index {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 25px;
+    grid-row-gap: 0px;
+    margin: auto 50px;
+
+    article.table-tickets {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+    article.table-comments {
+        grid-area: 1 / 2 / 2 / 3;
+    }
+}
+/** ADMIN : Comments */
+section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    margin: 50px;
+}
+
+/** ADMIN TABLE CSS */
+table.admin-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table.admin-table th {
+    background-color: #f2f2f2;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+}
+
+table.admin-table td, table.admin-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/** ADMIN BUTTON CSS */
+a.admin-btn {
+    background-color: var(--orange);
+    padding: 0.7rem;
+    color: var(--light);
+    font-weight: bold;
+    border: none;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+a.btn:hover {
+    background-color: var(--green);
+    color: var(--light);
+}
+
+/** ADMIN TAGS */
+div.first {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}

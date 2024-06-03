@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="probleme">
+        <h1>Un problème à résoudre ?</h1>
+        {% if app.user is not null %}
+            <a href="{{ path('add_tickets') }}">Créer un ticket</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Créer un ticket</a>
+        {% endif %}
+    </div>
+
+
+    <section class="container">
+        {% if user_ticket is not empty %}
+
+            <h1>Vos Tickets</h1>
+
+            <div class="tickets row">
+
+                {% for ticket in user_ticket %}
+
+                    <a class="ticket" href="{{ path('show_tickets', {id: ticket.id}) }}">
+                        <p class="ticket__title">{{ ticket.title | slice(0, 35) }}...</p>
+
+                        <div class="ticket__tags">
+                            {% for tag in ticket.tags %}
+                                <p>{{ tag.name }}</p>
+                            {% endfor %}
+                        </div>
+
+                        <p class="ticket__content">{{ ticket.content | slice(0, 100) }}</p>
+
+                        <p class="ticket__comments">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="25" viewBox="0 0 31 25"
+                                 fill="none">
+                                <path d="M21.9801 8.92857C21.9801 3.99554 17.1144 0 11.1094 0C5.10435 0 0.238647 3.99554 0.238647 8.92857C0.238647 9.62243 0.335486 10.2965 0.518457 10.9433C1.11667 13.0581 1.85594 15.4997 0.353626 17.1038C0.238647 17.2321 0.20729 17.4219 0.275232 17.5893C0.343174 17.7567 0.489511 17.8571 0.656753 17.8571C3.69704 17.8571 6.94739 17.5463 9.97636 17.8084C10.3486 17.8406 10.7266 17.8571 11.1094 17.8571C17.1144 17.8571 21.9801 13.8616 21.9801 8.92857ZM30.2272 24.2467C28.725 22.6427 29.4655 20.2013 30.0628 18.0864C30.2455 17.4393 30.3422 16.7649 30.3422 16.0714C30.3422 12.6767 28.0302 9.7249 24.6323 8.2147C24.1572 8.00357 23.6525 8.40872 23.6525 8.92857C23.6525 14.8382 18.0238 19.6429 11.1094 19.6429C10.3987 19.6429 9.91134 20.3727 10.3523 20.93C12.29 23.3791 15.6515 25 19.4715 25C19.8545 25 20.2327 24.9836 20.6052 24.9516C23.6331 24.6916 26.885 25 29.9241 25C30.0914 25 30.2429 24.894 30.3056 24.7321C30.3736 24.5703 30.3422 24.3806 30.2272 24.2467Z"
+                                      fill="black"></path>
+                            </svg>
+                            {{ ticket.getNumberOfComments() }}</p>
+                    </a>
+
+                {% endfor %}
+
+            </div>
+
+            {{ knp_pagination_render(user_ticket) }}
+
+        {% endif %}
+    </section>
+
+    <Section class="search-form">
+        <h1>J’ai besoin d’aide sur...</h1>
+        {# formulaire de recherche #}
+        {{ form_start(form) }}
+        {{ form_widget(form.q) }}
+        <button class="search-form__cta" type="submit">Search</button>
+        <a class="search-form__cta" href="/">Annuler</a>
+        {{ form_end(form) }}
+    </Section>
+
+    <section class="container">
+
+        <h1>Les Tickets</h1>
+
+        <div class="tickets col">
+
+            {% for ticket in tickets %}
+
+
+                <a class="ticket" href="{{ path('show_tickets', {id: ticket.id}) }}">
+
+                    <p class="ticket__title">{{ ticket.title }}...</p>
+
+                    <div class="ticket__tags">
+                        {% for tag in ticket.tags %}
+                            <p>{{ tag.name }}</p>
+                        {% endfor %}
+
+                        <span>Par {{ ticket.author.pseudo }}</span>
+                    </div>
+
+                    <p>{{ ticket.content | slice(0, 400) }}</p>
+
+                    <p class="ticket__comments">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="25" viewBox="0 0 31 25"
+                             fill="none">
+                            <path d="M21.9801 8.92857C21.9801 3.99554 17.1144 0 11.1094 0C5.10435 0 0.238647 3.99554 0.238647 8.92857C0.238647 9.62243 0.335486 10.2965 0.518457 10.9433C1.11667 13.0581 1.85594 15.4997 0.353626 17.1038C0.238647 17.2321 0.20729 17.4219 0.275232 17.5893C0.343174 17.7567 0.489511 17.8571 0.656753 17.8571C3.69704 17.8571 6.94739 17.5463 9.97636 17.8084C10.3486 17.8406 10.7266 17.8571 11.1094 17.8571C17.1144 17.8571 21.9801 13.8616 21.9801 8.92857ZM30.2272 24.2467C28.725 22.6427 29.4655 20.2013 30.0628 18.0864C30.2455 17.4393 30.3422 16.7649 30.3422 16.0714C30.3422 12.6767 28.0302 9.7249 24.6323 8.2147C24.1572 8.00357 23.6525 8.40872 23.6525 8.92857C23.6525 14.8382 18.0238 19.6429 11.1094 19.6429C10.3987 19.6429 9.91134 20.3727 10.3523 20.93C12.29 23.3791 15.6515 25 19.4715 25C19.8545 25 20.2327 24.9836 20.6052 24.9516C23.6331 24.6916 26.885 25 29.9241 25C30.0914 25 30.2429 24.894 30.3056 24.7321C30.3736 24.5703 30.3422 24.3806 30.2272 24.2467Z"
+                                  fill="black"></path>
+                        </svg>
+                        {{ ticket.getNumberOfComments() }}</p>
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+        {{ knp_pagination_render(tickets) }}
+    </section>
+{% endblock %}

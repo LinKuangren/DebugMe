@@ -1,0 +1,156 @@
+.show-ticket {
+  background-color: var(--bg);
+  padding: 60px 10px;
+
+  h1 {
+    color: var(--orange);
+  }
+
+  &__tags {
+    padding-block: .5rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+
+    p {
+      background-color: var(--green);
+      padding: .5rem;
+      border-radius: 1rem;
+
+      color: var(--light);
+    }
+
+    p, span {
+      font-size: 1rem;
+    }
+
+    span {
+      font-weight: 500;
+    }
+  }
+
+  &__content {
+    padding-block: 1rem;
+  }
+
+  &__cta {
+    display: flex;
+    gap: 1rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  &__comments {
+    padding: 10px;
+    background-color: var(--light);
+    border-radius: 5px;
+
+    h3 {
+      margin: 0;
+      color: var(--green);
+      font-size: 1.125rem;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+  }
+
+  .show-ticket__comments + .show-ticket__comments {
+    margin-top: 1rem;
+  }
+
+  &__publish {
+    margin-top: 1rem;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+
+      textarea {
+        background-color: var(--light);
+        border-radius: 5px;
+        min-height: 60px;
+        padding: .5rem;
+        font-size: .85rem;
+        border: none;
+      }
+    }
+
+    .valider {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+}
+
+.cta {
+  all: unset;
+  background-color: var(--orange);
+  padding: .3rem 1rem;
+  border-radius: 3px;
+  color: var(--light);
+  font-weight: 500;
+  cursor: pointer;
+  opacity: .8;
+
+  transition: .2s ease-in-out;
+}
+
+.cta:hover {
+  opacity: 1;
+}
+
+@media screen and (min-width: 768px) {
+  .show-ticket {
+    padding: 75px 50px;
+    max-width: 1220px;
+    margin: auto;
+
+    &__tags {
+      p, span {
+        font-size: 1.125rem;
+      }
+    }
+
+    &__content {
+      padding-block: 1.5rem;
+    }
+
+    &__comments {
+      padding: 1rem;
+
+      h3 {
+        font-size: 1.25rem;
+      }
+
+      p {
+        margin: 1rem 0;
+      }
+    }
+
+    .show-ticket__comments + .show-ticket__comments {
+      margin-top: 1.5rem;
+    }
+
+    &__publish {
+      .form {
+        textarea {
+          font-size: 1rem;
+        }
+      }
+
+      .valider {
+        margin-top: 1rem;
+      }
+    }
+  }
+}

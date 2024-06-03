@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Comatible" content="ie=edge">
+        <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+        <title>{% block title %}Dashboard Admin{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+        <script src="https://kit.fontawesome.com/2f9a7f15c2.js" crossorigin="anonymous"></script>
+    </head>
+    <body id="admin-body">
+        {% block menu %} {{ include('admin/_admin_header.html.twig') }} {% endblock %}
+        <div class="admin-body">
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>

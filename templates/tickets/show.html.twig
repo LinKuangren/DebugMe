@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ticket.title }}{% endblock %}
+
+{% block body %}
+    <section class="show-ticket container">
+
+        <h1>{{ ticket.title }}</h1>
+
+        {% if ticket.tags is not empty %}
+
+            <div class="show-ticket__tags">
+                {% for tag in ticket.tags %}
+                    <p>{{ tag.name }}</p>
+                {% endfor %}
+
+                <span>Par {{ ticket.author.pseudo }}</span>
+            </div>
+
+        {% endif %}
+
+        <p class="show-ticket__content">{{ ticket.content }}</p>
+
+        {% if is_granted('ROLE_ADMIN') or ( app.user and app.user.id == ticket.author.id) %}
+            <div class="show-ticket__cta">
+                <a class="cta" href="{{ path('edit_tickets', {id: ticket.id}) }}">Modifier</a>
+                <a class="cta warning" href="{{ path('delete_tickets', {id: ticket.id}) }}">Supprimer</a>
+            </div>
+
+        {% endif %}
+
+        {% if comments is not empty %}
+
+            <h2>{{ ticket.getNumberOfComments() }} Réponses :</h2>
+
+            {% for comment in comments %}
+                <div class="show-ticket__comments">
+                    <h3>{{ comment.author.pseudo }}</h3>
+                    <p>{{ comment.content }}</p>
+
+                    {% if is_granted('ROLE_ADMIN') or ( app.user and app.user.id == comment.author.id) %}
+                        <a class="cta" href="{{ path('delete_comment', {id: comment.id}) }}">Supprimer</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+        {% endif %}
+
+        {% if app.user is not null %}
+
+            <div class="show-ticket__publish">
+                {{ form_start(commentForm) }}
+
+                <div class="form">
+                    {{ form_label(commentForm.content, "Ton commentaire") }}
+                    {{ form_widget(commentForm.content, { 'attr': {'class': 'form-all title-block'} }) }}
+                </div>
+                <div class="valider">
+                    {{ form_label(commentForm.Publier, "Publier") }}
+                    {{ form_widget(commentForm.Publier, { 'attr': {'class': 'cta'} }) }}
+                </div>
+
+                {{ form_end(commentForm) }}
+            </div>
+
+        {% endif %}
+
+    </section>
+{% endblock %}

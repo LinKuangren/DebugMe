@@ -1,0 +1,28 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Modifier un utilisateur{% endblock %}
+{% block meta_description %}Modification d'un ticket sur le site.{% endblock %}
+
+{% block body %}
+        <h1> Modifier un ticket</h1>
+        <section>
+            {{ form_start(form) }}
+                <div class="form">
+                    {{ form_label(form.email, "Email") }}
+                    {{ form_widget(form.email, { 'attr': {'class': ' form-all title-block'} }) }}
+                </div>
+                <div class="form">
+                    {{ form_label(form.pseudo, "Pseudo") }}
+                    {{ form_widget(form.pseudo, { 'attr': {'class': ' form-all title-block'} }) }}
+                </div>
+                <div class="form">
+                    {{ form_label(form.experience, "Points d'activités") }}
+                    {{ form_widget(form.experience, { 'attr': {'class': ' form-all title-block'} }) }}
+                </div>
+                <div class="valider">
+                    {{ form_label(form.Valider) }}
+                    {{ form_widget(form.Valider, { 'attr': {'class': 'button-valider'} }) }}
+                </div>
+            {{ form_end(form) }}
+        </section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket{% endblock %}
+
+{% block body %}
+    <h1>ticket</h1>
+    <div class="probleme">
+        <a href="{{ path('add_tickets') }}">Ajouter un ticket</a>
+    </div>
+    <div>
+        {{ knp_pagination_render(tickets) }}
+         <div>
+            {% for ticket in tickets %}
+                <div class="all">
+                    <a href="{{ path('show_tickets', {id: ticket.id}) }}">{{ticket.title}}</a>
+                    {% if is_granted('ROLE_ADMIN') or ( app.user.id == ticket.author.id) %}
+                        <div>
+                            <a href="{{ path('delete_tickets', {id: ticket.id}) }}">Supprimer</a>
+                            <a href="{{ path('edit_tickets', {id: ticket.id}) }}">Modifier</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        {{ knp_pagination_render(tickets) }}
+    </div>
+{% endblock %}
